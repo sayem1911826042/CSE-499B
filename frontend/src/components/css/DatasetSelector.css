@@ -1,0 +1,62 @@
+.dataset-selector {
+  margin-bottom: 20px;
+}
+
+.selector-label {
+  font-weight: bold;
+  margin-right: 10px;
+  color: #007bff;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+}
+
+.selector-label span {
+  margin-right: 8px;
+  font-size: 1.5rem;
+}
+
+.selector {
+  padding: 10px;
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  font-size: 1rem;
+  outline: none;
+  width: 250px;
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.selector::-ms-expand {
+  display: none;
+}
+
+.selector {
+  appearance: none;
+}
+
+.selector:hover {
+  border-color: #0056b3;
+}
+
+.selector:focus {
+  border-color: #0056b3;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.selector option {
+  background-color: #fff;
+  color: #333;
+}
+
+.selector option:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.selector option:checked {
+  background-color: #007bff;
+  color: #fff;
+}

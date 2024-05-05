@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Price Prediction</title>
+</head>
+<body>
+    <div id="plotContainer">
+        <!-- Plot will be displayed here -->
+    </div>
+    <h1>Stock Price Prediction</h1>
+    <form id="datasetForm">
+        <label for="dataset">Select Dataset:</label>
+        <select id="dataset" name="dataset">
+            <option value="DutchBanglaBankFinbert.csv">Dutch Bangla Bank</option>
+            <option value="CityBankFinbert.csv">City Bank</option>
+            <!-- Add more options for different datasets -->
+        </select>
+        <br>
+        <label for="model">Select Model:</label>
+        <select id="model" name="model">
+            <option value="lstm">LSTM</option>
+            <option value="gru">GRU</option>
+        </select>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>

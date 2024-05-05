@@ -1,0 +1,68 @@
+.sentiment-container {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.sentiment-heading {
+  color: #007bff;
+  font-size: 1 rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.sentiment-icons {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+
+.sentiment-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sentiment-icon:hover {
+  transform: translateY(-5px);
+}
+
+.positive {
+  background-color: #daf6ff;
+  color: #28a745;
+}
+
+.neutral {
+  background-color: #ffefd5;
+  color: #ffc107;
+}
+
+.negative {
+  background-color: #ffdfdf;
+  color: #dc3545;
+}
+
+.icon {
+  font-size: 4rem;
+}
+
+.sentiment-label {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  color: #333;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.sentiment-badge {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  padding: 8px 15px;
+  border-radius: 20px;
+}

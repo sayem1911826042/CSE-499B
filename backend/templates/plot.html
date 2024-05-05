@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sStock Price Prediction</title>
+</head>
+<body>
+<!--  <h1>Stock Price Prediction</h1>   ----------->
+
+    <div id="plotContainer">
+        <img src="data:image/png;base64,{{ plot_url }}" alt="Predicted vs. Actual Prices">
+    </div>
+    <div id="sentimentCounts">
+        <h2>Sentiment Counts:</h2>
+        <ul>
+            <li>Neutral: {{ neutral_count }}</li>
+            <li>Positive: {{ positive_count }}</li>
+            <li>Negative: {{ negative_count }}</li>
+        </ul>
+    </div>
+</body>
+</html>

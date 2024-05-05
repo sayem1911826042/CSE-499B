@@ -1,0 +1,36 @@
+.navbar-top {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 2px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-top .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-top .contact-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-top .contact-item {
+    margin-right: 35px;
+  }
+  
+  .navbar-top .contact-item:last-child {
+    margin-right: 0;
+  }
+  
+  .navbar-top .icon {
+    font-size: 1.2rem;
+    color: #0036ac;
+  }
+  
+  .navbar-top .text {
+    font-size: 0.9rem;
+    color: #333333;
+  }
+  

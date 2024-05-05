@@ -1,0 +1,17 @@
+Step_01    find python first in directory:
+                 cmd>>  where python
+
+
+Step_02:  create venv with python directory
+                cmd>>   C:\Path\to\python.exe -m venv venv
+                                or
+                              C:\Users\USER\AppData\Local\Microsoft\WindowsApps\python.exe -m venv venv
+
+Step_03    Install requirements and install packages as needed
+
+Step_04: activate the virtual environment and install packages as needed
+                cmd>> .\venv\Scripts\Activate
+
+Step_05:   Run the file app.py
+                   cmd>> python app.py
+                 

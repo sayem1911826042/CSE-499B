@@ -1,0 +1,106 @@
+.navbarContainer {
+  background-color: #296cfd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbarBrand {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbarToggler {
+  border-color: #ffffff;
+}
+
+.navMenu {
+  display: flex;
+  justify-content: center;
+}
+
+.navLink {
+  color: #ffffff;
+  font-weight: bold;
+  margin: 0 15px;
+}
+.navLink:hover {
+  background-color: #ffffff;
+  color: #165ffd;
+}
+
+.navDropdown {
+  position: relative;
+  color: #ffffff;
+  font-weight: bold;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.dropdownItem {
+  color: #296cfd;
+  transition: background-color 0.3s, color 0.3s;
+  padding: 10px 15px;
+  display: block;
+}
+.dropdownItem:hover {
+  background-color: #296cfd;
+  color: #ffffff;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 160px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 10px 0;
+  display: none;
+  z-index: 1000;
+}
+
+.navDropdown:hover .dropdownMenu {
+  display: block;
+}
+
+.dropdownMenu .dropdownItem {
+  color: #000000;
+  padding: 10px 15px;
+}
+.dropdownMenu .dropdownItem:hover {
+  background-color: #296cfd;
+  color: #ffffff;
+}
+
+.searchForm {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.searchInput {
+  background-color: #ffffff;
+  color: #296cfd;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.searchButton {
+  background-color: #ffffff;
+  color: #296cfd;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+.searchButton:hover {
+  background-color: #0036ac;
+  color: #ffffff;
+  border: 1px;
+}

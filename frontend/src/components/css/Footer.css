@@ -1,0 +1,9 @@
+.footer {
+  margin-top: 30px;
+  background-color: #404040;
+}
+
+.footer span {
+  color: #ffffff;
+  font-weight: bold;
+}
