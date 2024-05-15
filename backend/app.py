@@ -5,7 +5,7 @@ import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import LSTM, Dense
+from tensorflow.keras.layers import LSTM, GRU, Dense
 import matplotlib.pyplot as plt
 import io
 import base64
@@ -13,8 +13,9 @@ import base64
 app = Flask(__name__)
 CORS(app)
 
+# Use non-interactive Agg backend for matplotlib
 import matplotlib
-matplotlib.use('Agg')  # Specify non-interactive Agg backend
+matplotlib.use('Agg')
 
 def plot_to_base64(plt):
     buf = io.BytesIO()
@@ -23,6 +24,21 @@ def plot_to_base64(plt):
     plt.close()  # Close the figure explicitly
     return base64.b64encode(buf.getvalue()).decode('utf-8')
 
+def preprocess_data(df):
+    # Convert Date column to datetime
+    df['Date'] = pd.to_datetime(df['Date'], dayfirst=True)
+    
+    # Convert 'Vol.' column to numeric
+    df['Vol.'] = df['Vol.'].replace('[KMB]+$', '', regex=True).astype(float) * df['Vol.'].str.extract(r'[\d\.]+([KMB]+)', expand=False).fillna(1).replace(['K','M', 'B'], [10**3, 10**6, 10**9]).astype(int)
+    
+    return df
+
+def create_sequences(data, n_steps):
+    X, y = [], []
+    for i in range(len(data) - n_steps):
+        X.append(data[i:(i + n_steps)])
+        y.append(data[i + n_steps, 0])  # Predicting the 'Open' price
+    return np.array(X), np.array(y)
 
 def calculate_sentiment_counts(df):
     # Calculate counts of each sentiment category
@@ -40,10 +56,7 @@ def index():
 
     # Load dataset
     df = pd.read_csv(f'dataset/{selected_dataset}')
-
-    # Preprocess data
-    df['Date'] = pd.to_datetime(df['Date'], dayfirst=True)
-    df['Vol.'] = df['Vol.'].replace('[KMB]+$', '', regex=True).astype(float) * df['Vol.'].str.extract(r'[\d\.]+([KMB]+)', expand=False).fillna(1).replace(['K','M', 'B'], [10**3, 10**6, 10**9]).astype(int)
+    df = preprocess_data(df)
 
     # Select relevant features for modeling
     df_filtered = df[['Open', 'Price', 'High', 'Low', 'Vol.']]
@@ -52,23 +65,25 @@ def index():
     scaler = MinMaxScaler()
     scaled_data = scaler.fit_transform(df_filtered)
 
-    # Define function to create sequences
-    def create_sequences(data, n_steps):
-        X, y = [], []
-        for i in range(len(data) - n_steps):
-            X.append(data[i:(i + n_steps)])
-            y.append(data[i + n_steps, 0])  # Predicting the 'Open' price
-        return np.array(X), np.array(y)
-
+    # Define input sequence length
     n_steps = 10
+
+    # Create sequences
     X, y = create_sequences(scaled_data, n_steps)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    # Build model (default to LSTM)
-    model = Sequential([
-        LSTM(50, input_shape=(X_train.shape[1], X_train.shape[2])),
-        Dense(1)
-    ])
+    # Build LSTM or GRU model based on selected option
+    if selected_model.lower() == 'lstm':
+        model = Sequential([
+            LSTM(50, input_shape=(X_train.shape[1], X_train.shape[2])),
+            Dense(1)
+        ])
+    elif selected_model.lower() == 'gru':
+        model = Sequential([
+            GRU(50, input_shape=(X_train.shape[1], X_train.shape[2])),
+            Dense(1)
+        ])
+
     model.compile(optimizer='adam', loss='mean_squared_error')
 
     # Train model
@@ -81,6 +96,7 @@ def index():
     y_pred_inv = scaler.inverse_transform(np.hstack((y_pred, np.zeros((y_pred.shape[0], 4)))))[:, 0]
     y_test_inv = scaler.inverse_transform(np.hstack((y_test.reshape(-1, 1), np.zeros((y_test.shape[0], 4)))))[:, 0]
 
+    # Calculate sentiment counts
     neutral_count, positive_count, negative_count = calculate_sentiment_counts(df)
 
     # Plot actual vs. predicted values
@@ -106,4 +122,3 @@ def index():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
