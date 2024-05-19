@@ -1,0 +1,14 @@
+/* SentimentAnalysis.module.css */
+
+.sentimentAnalysis {
+    margin-top: 20px;
+  }
+  
+  .chartContainer {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  

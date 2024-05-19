@@ -8,6 +8,11 @@ function DatasetSelector({ value, onChange }) {
       <select id="dataset" className="selector" value={value} onChange={onChange}>
         <option value="DutchBanglaBankFinbert.csv">🏦 Dutch Bangla Bank</option>
         <option value="CityBankFinbert.csv">🏛️ City Bank</option>
+        <option value="AgraniBankFinbert.csv">🏦 Agrani Bank</option>
+        <option value="EasternBankLimitedFinbert.csv">🏛️ Eastern Bank Limited</option>
+        <option value="IslamiBankFinbert.csv">🏦 Islami Bank</option>
+        <option value="JanataBankFinbert.csv">🏛️ Janata Bank</option>
+        <option value="SonaliBankFinbert.csv">🏦 Sonali Bank</option>
         {/* Add more options for different datasets */}
       </select>
     </div>

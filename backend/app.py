@@ -27,6 +27,7 @@ def plot_to_base64(plt):
 def preprocess_data(df):
     # Convert Date column to datetime
     df['Date'] = pd.to_datetime(df['Date'], dayfirst=True)
+
     
     # Convert 'Vol.' column to numeric
     df['Vol.'] = df['Vol.'].replace('[KMB]+$', '', regex=True).astype(float) * df['Vol.'].str.extract(r'[\d\.]+([KMB]+)', expand=False).fillna(1).replace(['K','M', 'B'], [10**3, 10**6, 10**9]).astype(int)
